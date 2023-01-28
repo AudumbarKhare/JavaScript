@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#online_exam_details {
+    padding: 10px;
+    width: 100%;
+}
+
+#online_exam_details #question_details {
+    width: 50%;
+    float: left;
+    padding: 5px;
+    border: 1px solid rgb(172 164 164);
+}
+
+#online_exam_details #tip_details {
+    width: 50%;
+    float: left;
+    padding: 5px;
+    border: 1px solid rgb(172 164 164);
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#online_exam_details #question_details button {
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #000;
+    border-radius: 15px;
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+#online_exam_details #question_details button:hover {
+    background: #060;
+    color: #fff;
+}
+
+#question {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+#radio_option {
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.tip_details .show_note {
+    padding: 15px;
+}
+
+.tip_details .show_note ul {
+    list-style: none;
+    list-style-type: circle;
+}
+
+.tip_details .show_note ul li {
+    padding: 5px 0px 5px 0px;
+}
+
+.tip_details .time_show {
+    position: relative;
+    height: 30vh;
+}
+
+.tip_details .tip{
+    font-weight: bold;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
+.tip_details .time_show p{
+    text-align: center;
+    font-weight: bold;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
+.tip_details .time_show .time_details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0px 0 0 -50px;
+}
+
+.tip_details .time_show .min,
+.sec {
+    border: 1px solid rgb(156, 155, 155);
+    padding: 15px;
+
+}
