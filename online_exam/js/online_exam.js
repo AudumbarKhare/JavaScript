@@ -1,10 +1,26 @@
 var random_question_no = 0;//random_question_id
-var questionDetails_Div = document.getElementById('question_details');
+const displayQuestions = document.getElementById('display_questions');
+const showQuestionList = document.getElementById('show-question-list');
+
 const min = document.getElementById("min");
 const sec = document.getElementById("sec");
+
+const queAnswered = document.getElementById('que-answered-no');
+const queMarked = document.getElementById('que-marked-no');
+const queNotAnswered = document.getElementById('que-not-answered-no');
+const queNotVisited = document.getElementById('que-not-visited-no');
+
+var question_no = 0;
 var que = '';
+
 var total_marks = 0;
-var duplicate_question = [];//questions
+
+var que_answered = 0;
+var que_marked = 0;
+var que_not_answered = 0;
+var que_not_visited = 0;
+
+var questions_list = [];
 var dis_count = [];
 
 const question_details = [
@@ -135,58 +151,93 @@ const note = [
 function show_question() {
     for (let i = 1; i < 6; i++) {
         var flag = 0;
-        random_question_no = Math.floor(Math.random() * 11);
-
-        if (random_question_no === 0) {
-            flag = 1;
+        random_question_no = Math.floor(Math.random() * 10);
+        if (questions_list.length === 0) {
+            flag = 0;
         } else {
-            if (duplicate_question.length === 0) {
-                flag = 0;
-            } else {
-                duplicate_question.forEach(item => {
-                    if (item == random_question_no) {
-                        flag = 1;
-                        return false;
-                    }
-                });
-            }
+            questions_list.forEach(item => {
+                if (item == random_question_no) {
+                    flag = 1;
+                    return false;
+                }
+            });
         }
 
-        flag == 1 ? i = i - 1 : duplicate_question.push(random_question_no);
+        flag == 1 ? i = i - 1 : questions_list.push(random_question_no);
     }
-    //console.log(duplicate_question);
-    show_tips();
-    duplicate_question.forEach((item, index) => {
-        select_question(item, index + 1);
-    });
+    // show_tips();
+    display_questions();
+    display_summary();
+    display_question_details();
+    time_count();
 }
 
-function show_tips() {
-    var display_note = "";
-    note.forEach(note => {
-        display_note = display_note + `<li>${note}</li>`;
-    });
-    display_note = `<ul> ${display_note}</ul>`
+// function show_tips() {
+//     var display_note = "";
+//     note.forEach(note => {
+//         display_note = display_note + `<li>${note}</li>`;
+//     });
+//     display_note = `<ul> ${display_note}</ul>`
+//     document.getElementById('show-note').innerHTML = display_note;
+//     console.log(document.getElementById('show-note'));
+// }
 
-    //console.log(display_note);
-    document.getElementsByClassName('show_note')[0].innerHTML = display_note;
-    console.log(document.getElementsByClassName('show_note'));
+function display_question_details() {
+    //showQuestion
+    var show_question_list = "";
+    for (let i = 0; i < questions_list.length; i++) {
+        show_question_list += `<li id="question-${i}">${i + 1}</li>`
+    }
+    showQuestionList.innerHTML = show_question_list;
+
 }
 
-function select_question(selected_question_no, index) {
-    question_details.forEach((q) => {
-        q.id === selected_question_no ? display_questions(q, index) : '';
-    });
-}
+function display_questions(type_action = '') {
+    const questionNo = document.getElementById('question-no');
+    const totalQuestions = document.getElementById('total-questions');
+    const questionList = document.getElementById(`question-${question_no}`);
 
-function display_questions(questions, i) {
-    que = que + `<p id="question">${i}.${questions.question}</p>
-                <div id="radio_option">
-                <label>A)</label> <input type="radio" name="option${questions.id}" id="${questions.id}" value="${questions.option[0].A}" onclick="count_marks(${questions.option[0].ans},${questions.id});radio_disabled(${questions.id})"/>${questions.option[0].A}
-                <label>B)</label> <input type="radio" name="option${questions.id}" id="${questions.id}" value="${questions.option[1].B}" onclick="count_marks(${questions.option[1].ans},${questions.id});radio_disabled(${questions.id})"/>${questions.option[1].B}<br>
-                <label>C)</label> <input type="radio" name="option${questions.id}" id="${questions.id}" value="${questions.option[2].c}" onclick="count_marks(${questions.option[2].ans},${questions.id});radio_disabled(${questions.id})"/>${questions.option[2].C}
-                <label>D)</label> <input type="radio" name="option${questions.id}" id="${questions.id}" value="${questions.option[3].D}" onclick="count_marks(${questions.option[3].ans},${questions.id});radio_disabled(${questions.id})"/>${questions.option[3].D}</div>`;
-    questionDetails_Div.innerHTML = `${que}<br> <button type="button" onclick="show_result()" id="btn_result" disabled>Result</button><button type="button" onclick="reset()">Reset</button>`;
+    //debugger;
+    if (type_action === "Next") {
+        console.log(question_no + " " + questions_list.length);
+        if (question_no < questions_list.length - 1) {
+            questionList.classList.add('visited-question');
+            queNotVisited.innerText = --que_not_visited;
+            radio_disabled(question_no)
+        }
+
+        question_no += 1;
+
+        if (question_no > questions_list.length - 1) {
+            alert('You are in last Question');
+            question_no -= 1;
+        }
+
+    } else if (type_action === "Prev") {
+        if (question_no != 0) questionList.classList.add('visited-question');
+
+        question_no -= 1;
+
+        if (question_no < 0) {
+            alert('You are in first Question');
+            question_no += 1;
+        }
+    }
+    questionNo.innerText = question_no + 1;
+    totalQuestions.innerText = questions_list.length;
+
+    const result = question_details.find((item, index) => {
+        if (index == questions_list[question_no]) return item;
+    });
+
+    que = `<p id="question">${question_no + 1}.${result.question}</p>
+                <div class="show-option">
+                <label>A) <input type="radio" name="option${result.id}" id="option${result.id}" value="${result.option[0].A}" onclick="count_marks(${result.option[0].ans},${result.id});radio_disabled(${result.id})"/>&nbsp;${result.option[0].A}</label>
+                <label>B) <input type="radio" name="option${result.id}" id="option${result.id}" value="${result.option[1].B}" onclick="count_marks(${result.option[1].ans},${result.id});radio_disabled(${result.id})"/>&nbsp;${result.option[1].B}</label>
+                <label>C) <input type="radio" name="option${result.id}" id="option${result.id}" value="${result.option[2].c}" onclick="count_marks(${result.option[2].ans},${result.id});radio_disabled(${result.id})"/>&nbsp;${result.option[2].C}</label>
+               <label>D) <input type="radio" name="option${result.id}" id="option${result.id}" value="${result.option[3].D}" onclick="count_marks(${result.option[3].ans},${result.id});radio_disabled(${result.id})"/>&nbsp;${result.option[3].D}</label>
+               </div>`;
+    displayQuestions.innerHTML = que;
 }
 
 function count_marks(marks, i) {
@@ -207,48 +258,43 @@ function count_marks(marks, i) {
         }
     }
     console.log(marks);
-    dis_count.length > 2 ? document.getElementById("btn_result").disabled = false : "";
+    dis_count.length > 2 ? document.getElementById("btn-result").disabled = false : "";
     marks === 1 ? total_marks = total_marks + 5 : (marks === 0 && total_marks > 0) ? total_marks = total_marks - 5 : total_marks + 0;
-    //console.log(dis_count.length);
 }
 
 function show_result() {
     console.log(total_marks);
-    min.innerHTML = 02;
-    sec.innerHTML = 30;
-    total_marks = 0;
-    que = '';
-    duplicate_question = [];
-    dis_count = [];
-    show_question();
     reset();
-    time_count();
 }
 
 function reset() {
-    //console.log(dis_count);
     dis_count.forEach((item) => {
         const radio = document.getElementsByName(`option${item}`);
         radio.forEach((q, i) => {
             radio[i].disabled = false;
             radio[i].checked = false;
-            //checked
         });
     });
-    document.getElementById("btn_result").disabled = true;
+    min.innerHTML = 02;
+    sec.innerHTML = 30;
+    total_marks = 0;
+    question_no = 0;
+    que = '';
+    questions_list = [];
+    dis_count = [];
+    show_question();
+    document.getElementById("btn-result").disabled = true;
 }
 
 function radio_disabled(i) {
     const radio = document.getElementsByName(`option${i}`);
-    radio.forEach((q, i) => {
-        radio[i].disabled = true;
-    });
+    console.log(radio);
+    // radio.forEach((q, i) => {
+    //     radio[i].disabled = true;
+    // });
 }
 
 function time_count() {
-    const questionDetails = document.getElementById("question_details").offsetHeight;
-
-    document.getElementById("tip_details").style.height = questionDetails + "px";
     var minutes = min.innerHTML;
     var seconds = sec.innerHTML;
 
@@ -266,9 +312,14 @@ function time_count() {
             clearInterval(interval);
             show_result();
         }
-        // console.log(minutes+" "+seconds)
     }, 1000);
 
 }
+function display_summary() {
+    que_not_visited = questions_list.length;
+    queAnswered.innerText = que_answered;
+    queMarked.innerText = que_marked;
+    queNotAnswered.innerText = que_not_answered;
+    queNotVisited.innerText = que_not_visited;
+}
 show_question();
-time_count();

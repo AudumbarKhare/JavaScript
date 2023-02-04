@@ -10,27 +10,73 @@
 </head>
 
 <body>
-    <div id="online_exam_details" class="clearfix">
-        <div id="question_details">
-            <!-- <label>A</label><input type="radio" name="option" value="A" />
-            <input type="radio" id="html" name="fav_language" value="HTML"> -->
-
-        </div>
-        <div class="tip_details" id="tip_details">
-            <span class="tip">Note :-</span>
-            <div class="show_note">
+    <div class="container" id="online_exam_details">
+        <!-- right side container -->
+        <div id="right-side-container" class="right-side-container">
+            <div class="question-description">
+                <span id="question-title">General Knowledge : Question</span>
+                <span id="question-no"></span> Of
+                <span id="total-questions"></span>
+            </div>
+            <div id="display_questions">
 
             </div>
-            <div class="time_show">
-                <p>Time Begin Count Down:-</p>
+            <div class="show-button">
+                <button type="button" id="btn-prev" onclick="display_questions('Prev')">Previous Question</button>
+                <button type="button" id="btn-result" onclick="show_result()" id="btn_result">Result</button>
+                <button type="button" id="btn-reset" onclick="reset()">Reset</button>
+                <button type="button" id="btn-next" onclick="display_questions('Next')">Next Question</button>
+            </div>
+
+        </div>
+        <!-- left side container -->
+        <div class="left-side-container" id="left-side-container">
+            <div class="time">
                 <div class="time_details">
-                    <span class="min" id="min">2</span>
-                    <span class="sec" id="sec">30</span>
+                    <p>Time Status</p>
+                    <div class="show-time">
+                        <!-- <span class="hrs" id="hrs">00:</span> -->
+                        <span class="min" id="min">2</span> :
+                        <span class="sec" id="sec">30</span>
+                    </div>
                 </div>
-
+                <div class="total-time" id="total-time">
+                    <span id="total-time-1">Total Time</span>
+                    <span id="total-time-2"> 00:02:30</span>
+                </div>
             </div>
-        </div>
+            <div class="exam-panel">
+                <h3 class="title" id="title">General Knowledge</h3>
+                <p class="sub-title" id="sub-title">General Knowledge Category</p>
+            </div>
 
+            <div class="question-summary-panel">
+                <div class="question-list" id="question-list">
+                    <ul class="show-question-list" id="show-question-list">
+
+                    </ul>
+                </div>
+                <div class="question-category">
+                    <h2>Summary</h2>
+                    <div id="question-category-1">
+                        <span id="que-answered"><span id="que-answered-no">0</span>Answered</span>
+                        <span id="que-marked"><span id="que-marked-no">0</span>Marked</span>
+                    </div>
+                    <div id="question-category-2">
+                        <span id="que-not-answered"><span id="que-not-answered-no">0</span>Not Answered</span>
+                        <span id="que-not-visited"><span id="que-not-visited-no">0</span>Not Visited</span>
+                    </div>
+                </div>
+            </div>
+
+           
+            <!-- <div class="note-panel">
+                <span class="tip">Note :-</span>
+                <div id="show-note">
+
+                </div>
+            </div> -->
+        </div>
     </div>
 </body>
 <script type="text/javascript" src="./js/online_exam.js"></script>
