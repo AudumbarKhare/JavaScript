@@ -20,6 +20,8 @@ var que_marked = 0;
 var que_not_answered = 0;
 var que_not_visited = 0;
 
+var isQuestionAnswered = false;
+
 var questions_list = [];
 var dis_count = [];
 
@@ -203,7 +205,15 @@ function display_questions(type_action = '') {
         if (question_no < questions_list.length - 1) {
             questionList.classList.add('visited-question');
             queNotVisited.innerText = --que_not_visited;
-            //radio_disabled(question_no)
+        }
+
+        if (isQuestionAnswered) {
+            ++que_answered;
+            isQuestionAnswered = false;
+            queAnswered.innerText = que_answered;
+        } else {
+            ++que_not_answered;
+            queNotAnswered.innerText = que_not_answered;
         }
 
         question_no += 1;
@@ -288,10 +298,11 @@ function reset() {
 
 function radio_disabled(i) {
     const radio = document.getElementsByName(`option${i}`);
-   // console.log(radio);
+    // console.log(radio);
     radio.forEach((q, i) => {
         radio[i].disabled = true;
     });
+    isQuestionAnswered = true;
 }
 
 function time_count() {
