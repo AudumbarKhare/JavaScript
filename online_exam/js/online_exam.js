@@ -203,7 +203,7 @@ function display_questions(type_action = '') {
         if (question_no < questions_list.length - 1) {
             questionList.classList.add('visited-question');
             queNotVisited.innerText = --que_not_visited;
-            radio_disabled(question_no)
+            //radio_disabled(question_no)
         }
 
         question_no += 1;
@@ -288,10 +288,10 @@ function reset() {
 
 function radio_disabled(i) {
     const radio = document.getElementsByName(`option${i}`);
-    console.log(radio);
-    // radio.forEach((q, i) => {
-    //     radio[i].disabled = true;
-    // });
+   // console.log(radio);
+    radio.forEach((q, i) => {
+        radio[i].disabled = true;
+    });
 }
 
 function time_count() {
