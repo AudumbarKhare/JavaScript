@@ -191,6 +191,7 @@ function show_question() {
         //flag == 1 ? i = i - 1 : questions_list.push(random_question_no);
     }
     // show_tips();
+    
     display_questions();
     display_summary();
     display_question_details();
@@ -233,7 +234,8 @@ function display_questions(type_action = '') {
             if (class_Name != "visited-question") queNotVisited.innerText = --que_not_visited;
             question_no += 1;
         } else {
-            alert('You are in last Question');
+            //alert('You are in last Question');
+            createNotification('You are in last Question','success');
         }
 
     } else if (type_action == "Prev") {
@@ -244,7 +246,8 @@ function display_questions(type_action = '') {
             if (class_Name != "visited-question") queNotVisited.innerText = --que_not_visited;
             question_no -= 1;
         } else {
-            alert('You are in first Question');
+           // alert('You are in first Question');
+           createNotification('You are in first Question','success');
         }
     }
 
