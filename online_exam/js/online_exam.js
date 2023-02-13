@@ -24,7 +24,6 @@ var class_Name = "";
 
 var isQuestionAnswered = false;
 
-var questions_list = [];
 var dis_count = [];
 var selected_question_list = [];
 
@@ -177,10 +176,10 @@ function show_question() {
     for (let i = 1; i < 6; i++) {
         var flag = 0;
         random_question_no = Math.floor(Math.random() * 10);
-        if (questions_list.length === 0) {
+        if (selected_question_list.length === 0) {
             flag = 0;
         } else {
-            questions_list.forEach(item => {
+            selected_question_list.forEach(item => {
                 if (item == random_question_no) {
                     flag = 1;
                     return false;
@@ -188,10 +187,9 @@ function show_question() {
             });
         }
         flag == 1 ? i = i - 1 : selected_question_list.push(question_details[random_question_no]);
-        //flag == 1 ? i = i - 1 : questions_list.push(random_question_no);
     }
     // show_tips();
-    
+
     display_questions();
     display_summary();
     display_question_details();
@@ -211,7 +209,7 @@ function show_question() {
 function display_question_details() {
     var show_question_list = "";
     for (let i = 0; i < selected_question_list.length; i++) {
-        show_question_list += `<li id="question-${i}">${i + 1}</li>`
+        show_question_list += `<li id="question-${i}" class="">${i + 1}</li>`
     }
     showQuestionList.innerHTML = show_question_list;
 
@@ -222,32 +220,22 @@ function display_questions(type_action = '') {
     const totalQuestions = document.getElementById('total-questions');
     const questionList = document.getElementById(`question-${question_no}`);
 
-    // console.log(questionList);
-
     if (type_action == "Next") {
-        console.log((question_no < selected_question_list.length));
         if (question_no < selected_question_list.length - 1) {
             class_Name = questionList.className;
-            question_answered(class_Name, selected_question_list[question_no].selected_ans);
-
-            questionList.classList.add('visited-question');
-            if (class_Name != "visited-question") queNotVisited.innerText = --que_not_visited;
+            question_answered(class_Name, selected_question_list[question_no].selected_ans, questionList);
             question_no += 1;
         } else {
-            //alert('You are in last Question');
-            createNotification('You are in last Question','success');
+            createNotification('You are in last Question', 'success');
         }
 
     } else if (type_action == "Prev") {
         if (question_no != 0) {
             class_Name = questionList.className;
-            question_answered(class_Name, selected_question_list[question_no].selected_ans);
-            questionList.classList.add('visited-question');
-            if (class_Name != "visited-question") queNotVisited.innerText = --que_not_visited;
+            question_answered(class_Name, selected_question_list[question_no].selected_ans, questionList);
             question_no -= 1;
         } else {
-           // alert('You are in first Question');
-           createNotification('You are in first Question','success');
+            createNotification('You are in first Question', 'success');
         }
     }
 
@@ -264,6 +252,7 @@ function display_questions(type_action = '') {
                <label>D) <input type="radio" name="option${result.id}" id="option${result.id}" value="${result.option[3].D}" onclick="count_marks(${result.option[3].ans},${result.id});radio_disabled(${result.id},${question_no},'D')" ${result.selected_ans != '' ? 'disabled' : ''} ${result.selected_ans == 'D' ? 'checked' : ''}/>&nbsp;${result.option[3].D}</label>
                </div>`;
     displayQuestions.innerHTML = que;
+
 }
 
 function count_marks(marks, i) {
@@ -365,19 +354,27 @@ function time_count() {
 
 }
 
-function question_answered(class_Name, selected_ans) {
-    console.log(class_Name + " " + isQuestionAnswered + " " + selected_ans);
+function question_answered(class_Name, selected_ans, questionList) {
+    //console.log(class_Name + " " + isQuestionAnswered + " " + selected_ans);
+    //debugger;
 
     if (isQuestionAnswered && selected_ans != "" && class_Name == "") {
+        questionList.classList.add('answered-question');
         ++que_answered;
+        --que_not_visited
     } else if (!isQuestionAnswered && selected_ans == "" && class_Name == "") {
+        questionList.classList.add('visited-question');
         ++que_not_answered;
+        --que_not_visited
     } else if (isQuestionAnswered && selected_ans != "" && class_Name == "visited-question") {
+        questionList.classList.remove('visited-question');
+        questionList.classList.add('answered-question');
         --que_not_answered;
         ++que_answered;
     }
     queAnswered.innerText = que_answered;
     queNotAnswered.innerText = que_not_answered;
+    queNotVisited.innerText = que_not_visited;
     isQuestionAnswered = false;
 }
 

@@ -188,6 +188,7 @@
  }
 
  .container .left-side-container .question-summary-panel .question-list ul>li {
+   background: #848484;
     display: inline-block;
     border: 1px solid #000000;
     padding: 12px;
@@ -244,6 +245,11 @@
  }
 
  .visited-question{
-   background: #DC4C64;
-   color: #ffffff;
+   background: #54B4D3 !important;
+   color: #ffffff !important;
+ }
+
+ .answered-question{
+   background: #3B71CA !important;
+   color: #ffffff !important;
  }
