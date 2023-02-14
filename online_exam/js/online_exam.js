@@ -173,22 +173,17 @@ const note = [
 
 
 function show_question() {
-    for (let i = 1; i < 6; i++) {
-        var flag = 0;
+    let i = 0;
+    while( i<5){
         random_question_no = Math.floor(Math.random() * 10);
-        if (selected_question_list.length === 0) {
-            flag = 0;
-        } else {
-            selected_question_list.forEach(item => {
-                if (item == random_question_no) {
-                    flag = 1;
-                    return false;
-                }
-            });
-        }
-        flag == 1 ? i = i - 1 : selected_question_list.push(question_details[random_question_no]);
+        selected_question_list.push(question_details[random_question_no]);
+        selected_question_list = [... new Set(selected_question_list)];
+        // console.log([... new Set(selected_question_list)]);
+        i = selected_question_list.length;
     }
     // show_tips();
+
+    console.log(selected_question_list);
 
     display_questions();
     display_summary();
@@ -212,7 +207,6 @@ function display_question_details() {
         show_question_list += `<li id="question-${i}" class="">${i + 1}</li>`
     }
     showQuestionList.innerHTML = show_question_list;
-
 }
 
 function display_questions(type_action = '') {
