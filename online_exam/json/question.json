@@ -1,0 +1,133 @@
+ [
+    {
+        "id": 1,
+        "question": "what is the full form of IPL?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "A",
+        "option": [
+            { "A": "Indian Premier League", "ans": 1 },
+            { "B": "Indian Player League", "ans": 0 },
+            { "C": "Indian Posatal League", "ans": 0 },
+            { "D": "Indian Pro League", "ans": 0 }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "Which country has started IPL?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "A",
+        "option": [
+            { "A": "India", "ans": 1 },
+            { "B": "South Africa", "ans": 0 },
+            { "C": "Australia", "ans": 0 },
+            { "D": "England", "ans": 0 }
+        ]
+
+    },
+    {
+        "id": 3,
+        "question": "In which year did IPL start?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "C",
+        "option": [
+            { "A": "In 2005", "ans": 0 },
+            { "B": "In 2007", "ans": 0 },
+            { "C": "In 2008", "ans": 1 },
+            { "D": "In 2010", "ans": 0 }
+        ]
+    },
+    {
+        "id": 4,
+        "question": "How many teams are in the IPL right now?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "D",
+        "option": [
+            { "A": "7 Teams", "ans": 0 },
+            { "B": "8 Teams", "ans": 0 },
+            { "C": "11 Teams", "ans": 0 },
+            { "D": "10 Teams", "ans": 1 }
+        ]
+    },
+    {
+        "id": 5,
+        "question": "Which player was the first time to hit a six and a four in the IPL?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "C",
+        "option": [
+            { "A": "Chris Gayle", "ans": 0 },
+            { "B": "Virat Kohli", "ans": 0 },
+            { "C": "Brendon McCullum.", "ans": 1 },
+            { "D": "AB de Villiers.", "ans": 0 }
+        ]
+    },
+    {
+        "id": 6,
+        "question": "Which player scored the first century in IPL?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "C",
+        "option": [
+            { "A": "Chris Gayle", "ans": 0 },
+            { "B": "Virat Kohli", "ans": 0 },
+            { "C": "Brendon McCullum.", "ans": 1 },
+            { "D": "AB de Villiers.", "ans": 0 }
+        ]
+    },
+    {
+        "id": 7,
+        "question": "Which is the team that has won the most IPL trophy?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "B",
+        "option": [
+            { "A": "Chennai Super King", "ans": 0 },
+            { "B": "Mumbai Indians", "ans": 1 },
+            { "C": "Sunrisers Hyderabad", "ans": 0 },
+            { "D": "Delhi Capitals", "ans": 0 }
+        ]
+    },
+    {
+        "id": 8,
+        "question": "Which IPL team was banned for 2 years?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "A",
+        "option": [
+            { "A": "Chennai Super King or Rajasthan Royal", "ans": 1 },
+            { "B": "New Super Kings or Royal Challenger Bangalore", "ans": 0 },
+            { "C": "Mumbai Indians or Royal Challenger Bangalore", "ans": 0 },
+            { "D": "Delhi Capitals or or Kolkata Knight Riders", "ans": 0 }
+        ]
+    },
+    {
+        "id": 9,
+        "question": "Which batsman scored the most runs in the first season of IPL?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "C",
+        "option": [
+            { "A": " Virender Sehwag", "ans": 0 },
+            { "B": "Shaun Marsh", "ans": 0 },
+            { "C": "Matthew Hayden", "ans": 1 },
+            { "D": "Mahendra Singh Dhoni", "ans": 0 }
+        ]
+    },
+    {
+        "id": 10,
+        "question": "Which player has been out at zero the most times in IPL?",
+        "answer": 1,
+        "selected_ans": "",
+        "correcte_ans": "B",
+        "option": [
+            { "A": "Harbhajan Singh", "ans": 0 },
+            { "B": "Mandeep Singh", "ans": 1 },
+            { "C": "Piyush Chawla", "ans": 0 },
+            { "D": "Ajinkya Rahane", "ans": 0 }
+        ]
+    }
+]

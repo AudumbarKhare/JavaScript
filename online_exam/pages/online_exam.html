@@ -5,14 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/online_exam.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/online_exam.css">
     <title>Online Exam</title>
 </head>
 
 <body>
     <div id="toasts">
-        <!-- <div class="toasts">Hello World</div>
-        <div class="toasts">Toast Number 2</div> -->
+        <!-- <div class="success toasts-type">
+            <div class="toasts-progress"></div>
+            <div class="show-toasts">
+                <i class="fa fa-check" id="start-icon"></i>
+                <div class="toasts-heading">
+                    <div class="toasts-title">You are in last Question</div>
+                    <div class="toasts-sub-title">You are in last Question</div>
+                </div>
+                <i class="fa fa-times" id="end-icon"></i>
+            </div>
+
+        </div> -->
+        <!-- <div class="toasts">Toast Number 2</div>  -->
     </div>
     <div class="container" id="online_exam_details">
         <!-- right side container -->
@@ -26,10 +39,10 @@
 
             </div>
             <div class="show-button">
-                <button type="button" id="btn-prev" onclick="display_questions('Prev')">Previous Question</button>
-                <button type="button" id="btn-result" onclick="show_result()" id="btn_result">Result</button>
+                <button type="button" id="btn-prev">Previous Question</button>
+                <button type="button" id="btn-result">Result</button>
                 <button type="button" id="btn-reset" onclick="reset()">Reset</button>
-                <button type="button" id="btn-next" onclick="display_questions('Next')">Next Question</button>
+                <button type="button" id="btn-next">Next Question</button>
             </div>
 
         </div>
@@ -73,7 +86,7 @@
                 </div>
             </div>
 
-           
+
             <!-- <div class="note-panel">
                 <span class="tip">Note :-</span>
                 <div id="show-note">
@@ -83,7 +96,7 @@
         </div>
     </div>
 </body>
-<script type="text/javascript" src="./js/toasts.js"></script>
-<script type="text/javascript" src="./js/online_exam.js"></script>
+<!-- <script type="text/javascript" src="../js/toasts.js"></script> -->
+<script type="module" src="../js/online_exam.js"></script>
 
 </html>
